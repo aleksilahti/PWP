@@ -20,11 +20,13 @@ It is probably not "pure" REST...
 In the examples at least one was using POST-methods...
 
 It seems that the API is "big" enough.
+
 Enough resources and interactions for the next steps.
 *
 
 ### Action points
 *API uses section missing
+
 Concepts; what are concept and what are properties*
 
 
