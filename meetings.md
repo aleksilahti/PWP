@@ -5,29 +5,29 @@
 * **ASSISTANTS: Mika Oja**
 
 ### Minutes
-*Aleksi presented earlier prototype of the quiz, which was "good motivation".
+* Aleksi presented earlier prototype of the quiz, which was "good motivation".
 
-Concept drawing was partially even a bit too detailed.
-Text on the other hand was not enough,
+* Concept drawing was partially even a bit too detailed.
+* Text on the other hand was not enough,
 more info what are the concepts and what are the properties.
-Which is something that can be taken out as a whole?
+* Which is something that can be taken out as a whole?
 
-API uses is completely missing,
+* API uses is completely missing,
 how they use API, what are their purposes?
 
-What is the mechanism behind answering?
-It is probably not "pure" REST...
-In the examples at least one was using POST-methods...
+* What is the mechanism behind answering?
+* It is probably not "pure" REST...
+* In the examples at least one was using POST-methods...
 
-It seems that the API is "big" enough.
+* It seems that the API is "big" enough.
 
-Enough resources and interactions for the next steps.
-*
+* There are enough resources and interactions for the next steps.
+
 
 ### Action points
-*API uses section missing
+* API uses section missing
 
-Concepts; what are concept and what are properties*
+* Concepts; what are concept and what are properties
 
 
 ### Comments from staff
