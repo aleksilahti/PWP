@@ -46,6 +46,12 @@ install dependencies
 	pip install -r requirements.txt
 
 use populate.py to generate test.db
+
+run pytest to test db_test.py
+
+	pytest
+
+
 	
 (to refresh the requirements use) 
 
@@ -59,7 +65,9 @@ db.py = database model
 
 populate.py = run this to create test.db
 
-(test.db) = db having the data from populate.py
+db_test.py = test for pytest to test
+
+test.db = db having the data from populate.py
 
 misc:
 
