@@ -1,11 +1,22 @@
-from db import db, Topic
+from db import db, Topic, Question
 
 db.create_all()
-print('Database created succesfully!')
-print('Populating database...')
+print('Database created!')
+print('Populating...')
 
+
+## create Topics resource to db
 tmp = Topic(
-    name='Testing'
+    name='Test_topic_name'
     )
 db.session.add(tmp)
 db.session.commit()
+print('Added Topic')
+
+## create Questions resource to db
+tmp = Question(
+    quiz_id='Test_quiz_id'
+    )
+db.session.add(tmp)
+db.session.commit()
+print('Added Question')
