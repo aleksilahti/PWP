@@ -26,8 +26,8 @@ __Remember to include all required documentation and HOWTOs, including how to cr
 
 # Overview of the API #
 
-## (root) ##
 
+## installing ##
 
 (Install virtualenv) (virtualenv is not in requirements) (in case with problems on Windows, try  installing with:)
 
@@ -50,4 +50,32 @@ use populate.py to generate test.db
 (to refresh the requirements use) 
 
 	python -m pip freeze -l > requirements.txt
+
+# Contents of the repo #
+## (root) ##
+python stuff:
+db.py = database model
+populate.py = run this to create test.db
+(test.db) = db having the data from populate.py
+
+misc:
+.gitignore = gitignore
+requirements = reqs for this repo
+readme.md = this readme file
+license = license of this repo
+meetings.md = meetings notes
+
+## pwp ##
+if you use "virtualenv pwp", this is where the virtualenv is created
+should be ignored
+
+## __pycache__ ##
+python cache files
+should be ignored
+
+## appendix_for_wiki ##
+appendices for the wiki, check the wiki to see these
+
+
+
 
