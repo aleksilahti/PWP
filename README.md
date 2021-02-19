@@ -24,4 +24,28 @@
 
 __Remember to include all required documentation and HOWTOs, including how to create and populate the database, how to run and test the API, the url to the entrypoint and instructions on how to setup and run the client__
 
+# Overview of the API #
+
+## (root) ##
+
+
+(Install virtualenv) (virtualenv is not in requirements) (in case with problems on Windows, try  installing with:)
+
+python -m pip install virtualenv --user
+
+Activate python virtual environment in command line
+
+virtualenv pwp
+
+    Activate virtual environment
+
+pwp\Scripts\activate.bat
+
+    install dependencies
+
+pip install -r requirements.txt
+
+    use populate.py to generate test.db
+	
+(to refresh the requirments use python -m pip freeze -l > requirements.txt)
 
