@@ -31,21 +31,23 @@ __Remember to include all required documentation and HOWTOs, including how to cr
 
 (Install virtualenv) (virtualenv is not in requirements) (in case with problems on Windows, try  installing with:)
 
-python -m pip install virtualenv --user
+	python -m pip install virtualenv --user
 
 Activate python virtual environment in command line
 
-virtualenv pwp
+	virtualenv pwp
 
-    Activate virtual environment
+Activate virtual environment
 
-pwp\Scripts\activate.bat
+	pwp\Scripts\activate.bat
 
-    install dependencies
+install dependencies
 
-pip install -r requirements.txt
+	pip install -r requirements.txt
 
-    use populate.py to generate test.db
+use populate.py to generate test.db
 	
-(to refresh the requirments use python -m pip freeze -l > requirements.txt)
+(to refresh the requirements use) 
+
+	python -m pip freeze -l > requirements.txt
 
