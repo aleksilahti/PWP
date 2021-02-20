@@ -14,13 +14,13 @@ class Topic(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(256), nullable=True)
 
-    questions = db.relationship("Question", back_populates="topic)
+    questions = db.relationship("Question", back_populates="topic")
     
 class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     topic_id = db.Column(db.Integer, db.ForeignKey("topic.id"), on_delete="SET NULL")
     question_text = db.Column(db.String(256), nullable=False)
-    image_src = question_text = db.Column(db.String(256), nullable=True)
+    image_src = db.Column(db.String(256), nullable=True)
     
     topic = db.relationship("Topic", back_populates="questions")
     
@@ -65,4 +65,4 @@ class Quiz(db.Model):
     result = db.Column(db.String(256), nullable=False)
     number_of_questions = db.Column(db.Integer, nullable=False)
 
-     user = db.relationship("User", back_populates="quizzes")
+    user = db.relationship("User", back_populates="quizzes")
