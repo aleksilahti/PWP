@@ -40,11 +40,9 @@ class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), on_delete="SET NULL", nullable=True)
     question_id = db.Column(db.Integer, db.ForeignKey("question.id"), on_delete="CASCADE", nullable=False)
-    reply_id = db.Column(db.Integer, db.ForeignKey("reply.id"), on_delete="SET NULL", nullable=True)
     comment_text = db.Column(db.String(256), nullable=False)
 
     user = db.relationship("User", back_populates="comments")
-    reply = db.relationship("Comment", back_populates="reply", uselist=False)
     question = db.relationship("Question", back_populates="comments")
 
 
