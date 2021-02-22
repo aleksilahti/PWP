@@ -18,7 +18,7 @@ class Topic(db.Model):
     
 class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    topic_id = db.Column(db.Integer, db.ForeignKey("topic.id"), on_delete="SET NULL")
+    topic_id = db.Column(db.Integer, db.ForeignKey("topic.id", ondelete="SET NULL"))
     question_text = db.Column(db.String(256), nullable=False)
     image_src = db.Column(db.String(256), nullable=True)
     
@@ -29,7 +29,7 @@ class Question(db.Model):
 
 class Answer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    question_id = db.Column(db.Integer, db.ForeignKey("question.id"), on_delete="CASCADE")
+    question_id = db.Column(db.Integer, db.ForeignKey("question.id", ondelete="CASCADE"))
     answer_text = db.Column(db.String(256), nullable=False)
     explanation_text = db.Column(db.String(256), nullable=True)
     is_correct = db.Column(db.Integer, nullable=False) #Boolean value 1 or 0
@@ -38,8 +38,8 @@ class Answer(db.Model):
 
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), on_delete="SET NULL", nullable=True)
-    question_id = db.Column(db.Integer, db.ForeignKey("question.id"), on_delete="CASCADE", nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id", ondelete="SET NULL"), nullable=True)
+    question_id = db.Column(db.Integer, db.ForeignKey("question.id", ondelete="CASCADE"), nullable=False)
     comment_text = db.Column(db.String(256), nullable=False)
 
     user = db.relationship("User", back_populates="comments")
@@ -57,7 +57,7 @@ class User(db.Model):
 
 class Quiz(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), on_delete="CASCADE", nullable=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id", ondelete="CASCADE"), nullable=True)
     created = db.Column(db.DateTime, nullable = False) 
     completed = db.Column(db.DateTime, nullable = False)
     result = db.Column(db.String(256), nullable=False)
