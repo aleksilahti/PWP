@@ -64,3 +64,5 @@ class Quiz(db.Model):
     number_of_questions = db.Column(db.Integer, nullable=False)
 
     user = db.relationship("User", back_populates="quizzes")
+    
+db.create_all()

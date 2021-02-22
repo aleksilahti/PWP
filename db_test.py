@@ -29,8 +29,6 @@ def db_handle():
     os.unlink(db_fname)
     
 # from course material (and last years project)
-    
-# Topic table test
 
 def test_Topic(db_handle):
     """
@@ -41,28 +39,34 @@ def test_Topic(db_handle):
 
         questions = db.relationship("Question", back_populates="topic")
     """
-    # Test creating
+    ### Test creating
     topic = Topic(name='nametest')
     db_handle.session.add(topic)
     db_handle.session.commit()
     assert Topic.query.count() == 1
 
-    # Check the name
+    ### Check the name
     topic = Topic.query.filter_by(name='nametest').first()
     assert topic.name == 'nametest'
     
-    # Test deleting
+    ### Test deleting
+    # add one more
     topic = Topic(name='addtest')
     db_handle.session.add(topic)
     db_handle.session.commit()
+    
     # should be 2 now
     assert Topic.query.count() == 2
     
+    # delete
     topic = Topic.query.filter_by(name='addtest').first()
     db_handle.session.delete(topic)
     db_handle.session.commit()
+    
     # deleted?
     assert Topic.query.count() == 1
+    
+    # check that the first one is still there
     topic = Topic.query.first()
     assert topic.name == 'nametest'
     
@@ -80,28 +84,45 @@ def test_Question(db_handle):
         comments = db.relationship("Comment", cascade="all, delete-orphan", back_populates="question")
     """
     
-    # Test creating
+    ### Test creating
     question = Question(question_text='test_question_text')
     db_handle.session.add(question)
     db_handle.session.commit()
     assert Question.query.count() == 1
     
-    # Check the question_text
+    ### Check the question_text
     question = Question.query.filter_by(question_text='test_question_text').first()
     assert question.question_text == 'test_question_text'
     
-    # Test deleting
+    ### Test that having no question_text gives error
+    question = Question(image_src='test_image_src')
+    db_handle.session.add(question)
+    
+    # committing now should raise an error
+    with pytest.raises(IntegrityError):
+        db_handle.session.commit()
+        
+    # rollback after error
+    db_handle.session.rollback()
+    
+    ### Test deleting
+    # add one more
     question = Question(question_text='add_question_text')
     db_handle.session.add(question)
     db_handle.session.commit()
+    
     # should be 2 now
     assert Question.query.count() == 2
     
+    # delete
     question = Question.query.filter_by(question_text='add_question_text').first()
     db_handle.session.delete(question)
     db_handle.session.commit()
+    
     # deleted?
     assert Question.query.count() == 1
+    
+    # check that the first is still there
     question = Question.query.first()
     assert question.question_text == 'test_question_text'
     
