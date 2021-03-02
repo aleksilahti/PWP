@@ -1,4 +1,4 @@
-from db import db, Topic, Question, Answer, Comment, User, Quiz, quiz_questions
+from db import db, Topic, Question, Answer, Comment, User, Quiz
 from datetime import datetime
 
 db.create_all()
@@ -68,6 +68,7 @@ db.session.commit()
 print('Added Quiz')
 
 ## appending to table
-# TODO fix this
-#QuizQuestions.questions.append(quiz1)
+quiz1.questions.append(question1)
+db.session.commit()
+print('Added question to quiz')
 
