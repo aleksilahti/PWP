@@ -1,14 +1,22 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.engine import Engine
+from sqlalchemy import event
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///test.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
+
 quiz_questions = db.Table("QuizQuestions",
     db.Column("quiz_id", db.Integer, db.ForeignKey("quiz.id"), primary_key=True),
     db.Column("question_id", db.Integer, db.ForeignKey("question.id"), primary_key=True)
 )
+@event.listens_for(Engine, "connect")
+def set_sqlite_pragma(dbapi_connection, connection_record):
+    cursor = dbapi_connection.cursor()
+    cursor.execute("PRAGMA foreign_keys=ON")
+    cursor.close()
 
 class Topic(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -24,6 +32,8 @@ class Question(db.Model):
     
     topic = db.relationship("Topic", back_populates="questions")
     
+    quizzes = db.relationship("Quiz", secondary=quiz_questions, back_populates="questions")
+
     answers = db.relationship("Answer", cascade="all, delete-orphan", back_populates="question")
     comments = db.relationship("Comment", cascade="all, delete-orphan", back_populates="question")
 
@@ -62,6 +72,8 @@ class Quiz(db.Model):
     completed = db.Column(db.DateTime, nullable = False)
     result = db.Column(db.String(256), nullable=False)
     number_of_questions = db.Column(db.Integer, nullable=False)
+    
+    questions = db.relationship("Question", secondary=quiz_questions, back_populates="quizzes")
 
     user = db.relationship("User", back_populates="quizzes")
     
