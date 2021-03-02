@@ -34,14 +34,39 @@ how they use API, what are their purposes?
 *ONLY USED BY COURSE STAFF: Additional comments from the course staff*
 
 ## Meeting 2.
-* **DATE:**
-* **ASSISTANTS:**
+* **DATE: 2.3.2021**
+* **ASSISTANTS: Mika Oja**
 
 ### Minutes
-*Summary of what was discussed during the meeting*
+* We went quickly through our tables and diagram
+
+* Seemed fairly straightforward according to Mika
+
+* Information was not completely up to date with the actual code
+
+* db.py seemed to be mostly ok
+
+* ondeletes were on both ends, as should be
+
+* nullables were sometimes true, sometimes false and sometimes not fixed (default)
+
+* pragma foreign keys was missing
+
+* relationship backwards to QuizQuestions missing
+
+* test_db.py had only couple of tests
+
+* should also include test to check that cascade deletes work
+
 
 ### Action points
-*List here the actions points discussed with assistants*
+* Nullables should be more consistent
+
+* Add pragma foreign keys
+
+* add backwards relationships to quizquestions
+
+* add tests for cascading
 
 
 ### Comments from staff
