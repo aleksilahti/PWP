@@ -19,14 +19,14 @@ def set_sqlite_pragma(dbapi_connection, connection_record):
     cursor.close()
 
 class Topic(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(256), nullable=True)
+    id = db.Column(db.Integer, primary_key=True, nullable=False)
+    name = db.Column(db.String(256), nullable=False)
 
     questions = db.relationship("Question", back_populates="topic")
     
 class Question(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    topic_id = db.Column(db.Integer, db.ForeignKey("topic.id", ondelete="SET NULL"))
+    id = db.Column(db.Integer, primary_key=True, nullable=False)
+    topic_id = db.Column(db.Integer, db.ForeignKey("topic.id", ondelete="SET NULL"), nullable=True)
     question_text = db.Column(db.String(256), nullable=False)
     image_src = db.Column(db.String(256), nullable=True)
     
@@ -38,8 +38,8 @@ class Question(db.Model):
     comments = db.relationship("Comment", cascade="all, delete-orphan", back_populates="question")
 
 class Answer(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    question_id = db.Column(db.Integer, db.ForeignKey("question.id", ondelete="CASCADE"))
+    id = db.Column(db.Integer, primary_key=True, nullable=False)
+    question_id = db.Column(db.Integer, db.ForeignKey("question.id", ondelete="CASCADE"), nullable=False)
     answer_text = db.Column(db.String(256), nullable=False)
     explanation_text = db.Column(db.String(256), nullable=True)
     is_correct = db.Column(db.Integer, nullable=False) #Boolean value 1 or 0
@@ -47,7 +47,7 @@ class Answer(db.Model):
     question = db.relationship("Question", back_populates="answers")
 
 class Comment(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id", ondelete="SET NULL"), nullable=True)
     question_id = db.Column(db.Integer, db.ForeignKey("question.id", ondelete="CASCADE"), nullable=False)
     comment_text = db.Column(db.String(256), nullable=False)
@@ -57,7 +57,7 @@ class Comment(db.Model):
 
 
 class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, nullable=False)
     username = db.Column(db.String(256), nullable=False)
     email = db.Column(db.String(256), nullable=False)
     pw_hash = db.Column(db.String(256), nullable=False)
@@ -66,12 +66,11 @@ class User(db.Model):
     quizzes = db.relationship("Quiz", back_populates="user")
 
 class Quiz(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id", ondelete="CASCADE"), nullable=True)
     created = db.Column(db.DateTime, nullable = False) 
     completed = db.Column(db.DateTime, nullable = False)
     result = db.Column(db.String(256), nullable=False)
-    number_of_questions = db.Column(db.Integer, nullable=False)
     
     questions = db.relationship("Question", secondary=quiz_questions, back_populates="quizzes")
 
